@@ -1,5 +1,5 @@
 cd /d "%~dp0"
-git remote add gitHubOriginAfcepfServerSoap https://didier-tp:pwd007!@github.com/didier-tp/afcepf_serverSoap.git
+git remote add gitHubOriginAfcepfServerSoap https://didier-tp:....!@github.com/didier-tp/afcepf_serverSoap.git
 git push -u gitHubOriginAfcepfServerSoap master
 pause
 
