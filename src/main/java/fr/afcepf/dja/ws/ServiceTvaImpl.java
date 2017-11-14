@@ -2,10 +2,18 @@ package fr.afcepf.dja.ws;
 
 import javax.jws.WebService;
 
+import org.springframework.stereotype.Service;
+
 import fr.afcepf.dja.data.ResCalculTva;
 
+@Service //@Component de Spring , id par défaut "serviceTvaImpl"
+                                 // nom de classe avec minuscule au début
+//@Transactional
 @WebService(endpointInterface="fr.afcepf.dja.ws.ServiceTva")
 public class ServiceTvaImpl implements ServiceTva {
+	
+	//@Autowired
+	//private IDaoxy daoXy;
 
 	@Override
 	public double tva(double ht, double taux) {
