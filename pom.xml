@@ -5,6 +5,16 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
+  <dependencies>
+  
+  <dependency>
+ <groupId>org.projectlombok</groupId>
+ <artifactId>lombok</artifactId>
+ <version>1.16.10</version> <!-- or via spring boot version -->
+</dependency>
+  
+  </dependencies>
+  
   <properties>
      <maven.compiler.source>1.8</maven.compiler.source>
 	 <maven.compiler.target>1.8</maven.compiler.target>
