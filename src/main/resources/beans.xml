@@ -9,7 +9,7 @@
                         http://cxf.apache.org/jaxws 
                         http://cxf.apache.org/schemas/jaxws.xsd">
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
-	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" /> <!-- peut etre en trop -->
+	 <!-- plus besoin de cxf-extension avec cxf 3 -->
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 	<context:annotation-config />
 	<context:component-scan base-package="fr.afcepf.dja" /> 
