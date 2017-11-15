@@ -2,11 +2,16 @@ package fr.afcepf.dja.rest;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -42,11 +47,42 @@ public class RestDeviseService {
 		      }
 		      return listeDevises;
 	}
+	
 	@GET
 	//url : http://localhost:8080/serverSoap/ws/rest/devise/EUR
 	@Path("/{codeDev}") 
 	public Devise deviseByCode(@PathParam("codeDev")String codeDevise){
 		return deviseDao.findDeviseByCode(codeDevise);
+	}
+	
+	@DELETE
+	//url : http://localhost:8080/serverSoap/ws/rest/devise/EUR
+	@Path("/{codeDev}") 
+	public Response deleteDeviseByCode(@PathParam("codeDev")String codeDevise){
+		try {
+			deviseDao.deleteDeviseBycode(codeDevise);
+			return Response.status(Status.OK).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Status.NOT_FOUND).build();//ou Status.INTERNAL_SERVER_ERROR
+		}
+	}
+	
+	@POST
+	//url : http://localhost:8080/serverSoap/ws/rest/devise
+	@Path("") 
+	@Consumes("application/json")
+	public Response posterNouvelleDevise(Devise d){
+		try {
+			deviseDao.insertDevise(d);
+			//return Response.status(Status.OK).build();
+			return Response.ok(d)
+					       .status(Status.OK)
+					       .build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+		}
 	}
 	
 	

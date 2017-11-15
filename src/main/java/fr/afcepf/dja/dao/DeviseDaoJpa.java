@@ -51,4 +51,9 @@ public class DeviseDaoJpa implements IDeviseDao {
 			   .setParameter("tauxMin", tauxChangeMini)
 	           .getResultList();
 	}
+
+	@Override
+	public void deleteDeviseBycode(String codeDevise) {
+		entityManager.remove( entityManager.find(Devise.class, codeDevise) );
+	}
 }

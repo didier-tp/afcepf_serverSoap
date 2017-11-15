@@ -11,5 +11,6 @@ public interface IDeviseDao {
 	
 	public void updateDevise(Devise d);
 	public void insertDevise(Devise d);
+	public void deleteDeviseBycode(String codeDevise);
 	
 }
