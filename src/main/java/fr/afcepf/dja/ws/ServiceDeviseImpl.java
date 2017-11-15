@@ -3,6 +3,7 @@ package fr.afcepf.dja.ws;
 
 
 import javax.annotation.PostConstruct;
+import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.afcepf.dja.dao.IDeviseDao;
 import fr.afcepf.dja.data.Devise;
 
-//@WebService(...)
+@WebService(endpointInterface="fr.afcepf.dja.ws.IServiceDevise")
 @Service
 @Transactional
 public class ServiceDeviseImpl implements IServiceDevise {
