@@ -2,12 +2,15 @@
     xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
                         http://www.springframework.org/schema/beans/spring-beans.xsd 
                         http://www.springframework.org/schema/context 
                         http://www.springframework.org/schema/context/spring-context.xsd                                
                         http://cxf.apache.org/jaxws 
-                        http://cxf.apache.org/schemas/jaxws.xsd">
+                        http://cxf.apache.org/schemas/jaxws.xsd
+                        http://cxf.apache.org/jaxrs 
+                        http://cxf.apache.org/schemas/jaxrs.xsd">
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	 <!-- plus besoin de cxf-extension avec cxf 3 -->
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
@@ -27,6 +30,34 @@
 	<jaxws:endpoint id="serviceDeviseImplEndPoint" 
 	     implementor="#serviceDeviseImpl"
 		address="/devise" />
-	<!-- url complete : http://localhost:8080/ + serverSoap/ + ws/ + /devise -->	
+	<!-- url complete : http://localhost:8080/ + serverSoap/ + ws/ + /devise -->
+	
+	<!-- jackson = techno  pour convertir java en json ou bien json en java -->
+	<bean id='jacksonJsonProvider' 
+	     class='com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider' /> 
+	
+	<!-- partie de la configuration de CXF pour les WS REST 
+	     URL complete = http://localhost:8080/nomProjet/ws/rest/@Path_Sur_classeJava-->
+	<jaxrs:server id="myRestServices" address="/rest"> 
+	        <jaxrs:providers>
+	            <ref bean='jacksonJsonProvider' /> 
+	        </jaxrs:providers>
+			<jaxrs:serviceBeans>
+				<ref bean="restDeviseService"/> <!-- ou RestDeviseService
+				                             est une classe java (de Spring) avec @Component -->
+			<!-- <ref bean="restService2"/> -->
+			</jaxrs:serviceBeans>
+	</jaxrs:server>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
 		
 </beans>
