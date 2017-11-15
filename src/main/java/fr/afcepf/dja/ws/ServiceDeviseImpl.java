@@ -23,10 +23,10 @@ public class ServiceDeviseImpl implements IServiceDevise {
 	@PostConstruct
 	public void initJeuxDeDonnees(){
 		if(deviseDao.findAllDevise().isEmpty()){
-			deviseDao.insertDevise(new Devise("EUR",1.1));
+			deviseDao.insertDevise(new Devise("EUR",0.84));
 			deviseDao.insertDevise(new Devise("USD",1.0));
 			deviseDao.insertDevise(new Devise("JPY",112.0));
-			deviseDao.insertDevise(new Devise("GBP",1.2));
+			deviseDao.insertDevise(new Devise("GBP",0.758));
 		}
 	}
 
