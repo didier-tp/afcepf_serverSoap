@@ -9,6 +9,6 @@ public interface IDeviseDao {
 	public List<Devise> findAllDevise();
 	
 	public void updateDevise(Devise d);
-	//...
+	public void insertDevise(Devise d);
 	
 }

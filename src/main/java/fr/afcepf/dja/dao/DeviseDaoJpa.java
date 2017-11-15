@@ -33,4 +33,9 @@ public class DeviseDaoJpa implements IDeviseDao {
 	public void updateDevise(Devise d) {
 		entityManager.merge(d);
 	}
+
+	@Override
+	public void insertDevise(Devise d) {
+		entityManager.persist(d);
+	}
 }

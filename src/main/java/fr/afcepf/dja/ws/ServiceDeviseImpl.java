@@ -2,6 +2,8 @@ package fr.afcepf.dja.ws;
 
 
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,16 @@ public class ServiceDeviseImpl implements IServiceDevise {
 	
 	@Autowired
 	private IDeviseDao deviseDao;
+	
+	@PostConstruct
+	public void initJeuxDeDonnees(){
+		if(deviseDao.findAllDevise().isEmpty()){
+			deviseDao.insertDevise(new Devise("EUR",1.1));
+			deviseDao.insertDevise(new Devise("USD",1.0));
+			deviseDao.insertDevise(new Devise("JPY",112.0));
+			deviseDao.insertDevise(new Devise("GBP",1.2));
+		}
+	}
 
 	@Override
 	public double convertir(double montant, String codeMonnaieSource, String codeMonnaieCible) {
