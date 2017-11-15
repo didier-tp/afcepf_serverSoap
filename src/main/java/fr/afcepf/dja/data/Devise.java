@@ -3,6 +3,7 @@ package fr.afcepf.dja.data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -19,6 +20,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @XmlType(namespace="http://data.dja.afcepf.fr/")
 @XmlRootElement(name="devise")
+@NamedQuery(name="Devise.findByTauxMini",
+            query="SELECT d FROM Devise d WHERE d.tauxChange >= :tauxMin")
 public class Devise {
 	
 	@Id

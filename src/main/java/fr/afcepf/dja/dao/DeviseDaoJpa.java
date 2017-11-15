@@ -38,4 +38,17 @@ public class DeviseDaoJpa implements IDeviseDao {
 	public void insertDevise(Devise d) {
 		entityManager.persist(d);
 	}
+
+	@Override
+	public List<Devise> findDeviseWithTauxMini(double tauxChangeMini) {
+		/*return entityManager.createQuery(
+				"SELECT d FROM Devise d WHERE d.tauxChange >= :tauxMin",
+				Devise.class)
+			   .setParameter("tauxMin", tauxChangeMini)
+	           .getResultList();*/
+		return entityManager.createNamedQuery("Devise.findByTauxMini",
+				Devise.class)
+			   .setParameter("tauxMin", tauxChangeMini)
+	           .getResultList();
+	}
 }

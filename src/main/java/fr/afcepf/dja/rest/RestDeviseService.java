@@ -33,16 +33,12 @@ public class RestDeviseService {
 	@Path("") //ou bien @Path("/") ou bien @Path("/all")
 	public List<Devise> /*allDevise()*/
 	       devisesByCriteria(@QueryParam("tauxChangeMini")Double tauxChangeMini){
-		      List<Devise> listeDevises = deviseDao.findAllDevise();
-		      if(tauxChangeMini!=null){
-		    	  //boucle de n-1 à 0 pour ne pas perturber les indice lors du remove()
-		    	  //si non , bogon = particule élémentaire de bug.
-		    	  for(int i=listeDevises.size()-1;i>=0;i--){
-		    		  Devise d = listeDevises.get(i);
-		    		  if(d.getTauxChange()<tauxChangeMini){
-		    			  listeDevises.remove(d);
-		    		  }
-		    	  }
+		    List<Devise> listeDevises = null; 
+		     if(tauxChangeMini==null){
+		    	 listeDevises = deviseDao.findAllDevise();
+		     }
+		     else{
+		    	  listeDevises = deviseDao.findDeviseWithTauxMini(tauxChangeMini);		    	  
 		      }
 		      return listeDevises;
 	}
