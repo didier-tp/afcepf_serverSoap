@@ -72,13 +72,15 @@ public class RestDeviseService {
 	//url : http://localhost:8080/serverSoap/ws/rest/devise
 	@Path("") 
 	@Consumes("application/json")
-	public Response posterNouvelleDevise(Devise d){
+	public Response saveOrUpdateDevise(Devise d){
 		try {
-			deviseDao.insertDevise(d);
+			Devise dExistante = deviseDao.findDeviseByCode(d.getCodeDevise());
+			if(dExistante==null)
+			     deviseDao.insertDevise(d);
+			else 
+				deviseDao.updateDevise(d);
 			//return Response.status(Status.OK).build();
-			return Response.ok(d)
-					       .status(Status.OK)
-					       .build();
+			return Response.ok(d).build();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
