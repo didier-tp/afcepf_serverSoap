@@ -27,6 +27,11 @@
 		address="/tva" />
 	<!-- url complete : http://localhost:8080/ + serverSoap/ + ws/ + /tva -->
 	
+	
+	<jaxws:endpoint id="serviceCalculImplEndPoint" 
+	     implementor="#serviceCalculImpl"
+		address="/calcul" />
+	
 	<jaxws:endpoint id="serviceDeviseImplEndPoint" 
 	     implementor="#serviceDeviseImpl"
 		address="/devise" />
